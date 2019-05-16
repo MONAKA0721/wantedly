@@ -9,6 +9,7 @@ const App: FunctionComponent = () => {
   const [isAll, setIsAll] = useState(true)
   const [items, setItems] = useState<Todo[]>([])
   const [text, setText] = useState('')
+  const [isDone, setIsDone] = useState(false)
   const onAdd = () => {
     setItems([...items, { text, isClosed: false }])
     setText('')
@@ -26,6 +27,17 @@ const App: FunctionComponent = () => {
     setItems(_items)
   }
 
+
+
+  function showState(){
+    if(!isAll && isDone){
+      return 'Done';
+    }else if(!isAll && !isDone){
+      return 'Not Done';
+    }else{
+      return 'All';
+    }
+  }
   return (
     <Fragment>
       <div>
@@ -38,12 +50,14 @@ const App: FunctionComponent = () => {
         </button>
       </div>
       <div>
-        <button onClick={() => setIsAll(true)}>ALL</button>
-        <button onClick={() => setIsAll(false)}>Not Done</button>
+        <button onClick={() => {setIsAll(true)}}>ALL</button>
+        <button onClick={() => {setIsAll(false);setIsDone(false)}}>Not Done</button>
+        <button onClick={() => {setIsAll(false);setIsDone(true)}}>Done</button>
       </div>
+      <h1>{showState()}</h1>
       <ul>
         {items
-          .filter(item => isAll || !item.isClosed)
+          .filter(item => isAll || (isDone && item.isClosed) || (!isDone && !item.isClosed))
           .map(item => (
             <li key={item.text}>
               <span>{item.isClosed ? <del>{item.text}</del> : item.text}</span>
