@@ -3,7 +3,7 @@
 ## セットアップ方法
 
 このwebアプリはHerokuを使用して下記のサイトにデプロイされています.  
-[http://taskforwantedly.herokuapp.com/](http://taskforwantedly.herokuapp.com/).  
+[http://taskforwantedly.herokuapp.com/](http://taskforwantedly.herokuapp.com/)  
 スリープから復帰するため起動に時間がかかります.
 
 
