@@ -7,15 +7,15 @@ interface Todo {
   deadline: number
   deadlineDate : string
   deadlineTime : string
-  addedTime: number
+  addedTime: number // TODO要素の定義
 }
 
 const App: FunctionComponent = () => {
   const [isAll, setIsAll] = useState(true)
+  const [isDone, setIsDone] = useState(false) //フィルタリングのためのState
   const [items, setItems] = useState<Todo[]>([])
-  const [text, setText] = useState('')
-  const [isDone, setIsDone] = useState(false)
-  const [isSorted, setIsSorted] = useState(false)
+  const [text, setText] = useState('') //inputのためのState
+  const [isSorted, setIsSorted] = useState(false) //sortした際、レンダリングを行うために必要
   const [deadlineDate, setDeadlineDate] = useState(todayDate())
   const [deadlineTime, setDeadlineTime] = useState('')
 
@@ -24,11 +24,11 @@ const App: FunctionComponent = () => {
     var addedTime = (new Date()).getTime()
     var time = '23:59';
     var date = '2100-12-31'; //日時が入力されなかった場合、ソート時に後ろに持ってくるようにしたいため
-    if(deadlineTime === '' && deadlineDate !== undefined){
+    if(deadlineTime === '' && deadlineDate !== ''){
       date = deadlineDate
-    }else if(deadlineTime !== '' && deadlineDate === undefined){
+    }else if(deadlineTime !== '' && deadlineDate === ''){
       time = deadlineTime
-    }else if(deadlineTime !== '' && deadlineDate !== undefined){
+    }else if(deadlineTime !== '' && deadlineDate !== ''){
       time = deadlineTime
       date = deadlineDate
     }
@@ -110,17 +110,6 @@ const App: FunctionComponent = () => {
     setIsSorted(!isSorted);
   }
 
-  /* 現在の状態の取得(不使用) */
-  // function showState(){
-  //   if(!isAll && isDone){
-  //     return 'Done';
-  //   }else if(!isAll && !isDone){
-  //     return 'Not Done';
-  //   }else{
-  //     return 'All';
-  //   }
-  // };
-
   //今日の日付の取得
   function todayDate(){
     var today = new Date();
@@ -157,13 +146,12 @@ const App: FunctionComponent = () => {
               {items
                 .filter(item => (isAll || (isDone && item.isClosed) || (!isDone && !item.isClosed))&& item.isPinned)
                 .map(item => (
-                  <li key={item.text} className='todo_item'>
+                  <li key={item.text} className={item.isClosed ? 'done_item' : 'todo_item'}>
                     <span>{item.isClosed ? <del>{item.text}</del> : item.text}</span>
                     {(item.deadlineDate==='' && item.deadlineTime==='')? '': <span><br/>BY:</span>}
                     <span className='marginRight'>{item.deadlineDate}</span>
                     <span>{item.deadlineTime}</span>
                     <br/>
-
                     <button onClick={onClose(item.text)}>{item.isClosed? 'undo': 'done'}</button>
                     <button onClick={onPin(item.text)}>{'unPin'}</button>
                     <button onClick={onDelete(item.text)} className='deleteButton'>{'x'}</button>

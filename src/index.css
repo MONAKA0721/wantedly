@@ -78,7 +78,7 @@ input[name="state"] {
 #container{
   display: grid;
   grid-template-columns: 2fr 1fr;
-  grid-template-rows: 200px 1fr ;
+  grid-template-rows: 210px 1fr ;
 }
 
 #inputForm{
@@ -174,7 +174,7 @@ input[name="state"] {
 @media screen and (max-width:414px) {
   #container{
     grid-template-columns: 1fr;
-    grid-template-rows: 200px 1fr ;
+    grid-template-rows: 210px 1fr ;
   }
 
   .input {

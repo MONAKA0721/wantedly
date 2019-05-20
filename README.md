@@ -1,44 +1,29 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# TODO App(by React)
 
-## Available Scripts
+## セットアップ方法
 
-In the project directory, you can run:
+このwebアプリはHerokuを使用して下記のサイトにデプロイされています.  
+[http://taskforwantedly.herokuapp.com/](http://taskforwantedly.herokuapp.com/).  
+スリープから復帰するため起動に時間がかかります.
 
-### `npm start`
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Developerモードで起動する際には`npm start`または`yarn start`を使用してください.  
+[http://localhost:3000](http://localhost:3000)で起動します.
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
 
-### `npm test`
+Buildの際は`npm run build`または`yarn build`を使用してください.
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## 追加機能について
 
-### `npm run build`
+### ピン機能
+重要なものアイテムは固定されて常に上にあったほうが注意が向くと思い、ピンでページ上部に固定できる機能を実装しました.
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### 締切日時の入力
+各アイテムの追加時に締切の日時を入力できるようにしました.  
+やることを入力するときには、締切の目安があると便利だと思ったからです.
+なお、締切を入力しないことも可能です.
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+### ソート機能
+締め切り順、追加が新しい順、古い順で並び替えが行えます.  
+TODO アプリである以上、締切を意識した機能があれば便利だと考え、やるべき順に並べられる機能を実装しました.
+締め切り順の場合、締切日時の入力のないものは最後尾に、日付しか入力がないものは、時刻も入力されているもののあとに並ぶ仕様としています.
